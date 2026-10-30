@@ -22,3 +22,26 @@ fetch("http://localhost:5678/api/works")
             gallery.appendChild(figure);
         });
     });
+
+fetch("http://localhost:5678/api/categories")
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (categories) {
+        const categoriesContainer = document.querySelector(".categories");
+
+        const allButton = document.createElement("button");
+        allButton.textContent = "Tous";
+        allButton.classList.add("filter-button", "active");
+
+        categoriesContainer.appendChild(allButton);
+
+        categories.forEach(function (category) {
+            const button = document.createElement("button");
+
+            button.textContent = category.name;
+            button.classList.add("filter-button");
+
+            categoriesContainer.appendChild(button);
+        });
+    });
